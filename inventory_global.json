@@ -1,0 +1,50 @@
+{
+    "desc": "Inventory",
+    "devices": [
+        {
+            "id": 16,
+            "name": "Device2",
+            "type": "ATE",
+            "state": "Reserved",
+            "attributes": {
+                "vendor": "Cisco",
+                "type": "ATE"
+            },
+            "interfaces": [
+                {
+                    "name": "port2",
+                    "speed": 100000000
+                }
+            ]
+        },
+        {
+            "id": 17,
+            "name": "Device3",
+            "type": "DUT",
+            "state": "Reserved",
+            "attributes": {
+                "vendor": "Cisco",
+                "type": "DUT"
+            },
+            "interfaces": [
+                {
+                    "name": "port3",
+                    "speed": 200000000
+                }
+            ]
+        },
+        {
+            "id": 18,
+            "name": "Device4",
+            "type": "ATE",
+            "state": "None",
+            "attributes": {
+                "vendor": "Cisco",
+                "type": "ATE"
+            },
+            "interfaces": [
+                {}
+            ]
+        }
+    ]
+}
