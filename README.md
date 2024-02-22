@@ -9,7 +9,7 @@
 ## Running the Client for Ondatra
 * Require testbed input in JSON.
 * Import goopentestbed
-* Run the Go file and the file data should have the below content.
+* Run the Go file, the file should have the below content.
 * For User test run, use the dynamically generated testbed_output.
     ```
     package main
@@ -104,7 +104,7 @@
 ## Running the Client for Cafy
 * Pip install opentestbed
 * Import opentestbed package
-* Run the python file and the file has the below content.
+* Run the python file, the file should have the below content.
 * For User test run, use the dynamically generated testbed_output.
     ```
     import opentestbed
