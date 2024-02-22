@@ -10,7 +10,7 @@
 * Require testbed input in JSON.
 * Import goopentestbed
 * Run the Go file and the file data should have the below content.
-* For the test run use the dynamically generated testbed_output.
+* For User test run, use the dynamically generated testbed_output.
     ```
     package main
     import (
@@ -105,7 +105,7 @@
 * Pip install opentestbed
 * Import opentestbed package
 * Run the python file and the file has the below content.
-* For the test run use the dynamically generated testbed_output.
+* For User test run, use the dynamically generated testbed_output.
     ```
     import opentestbed
     api = opentestbed.api(location="http://127.0.0.1:8080", transport="http")    
