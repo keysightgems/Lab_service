@@ -1,12 +1,48 @@
 # Lab Reservation Service End-To-End Workflow.
 ## Prerequisites
+* Docker Netbox should be running, to get the Inventory data (Dynamic updates have not yet been implemented, currently using manual feed inventory data)
+* Lab Reservation Service should be running.
 * Testbed API SDK (Ondatra/Cafy)
     * import goopentestbed for Ondatra ```github.com/open-traffic-generator/opentestbed/goopentestbed```
     * import opentestbed For Cafy ```pip install opentestbed```
-* Docker Netbox should be running, to get the Inventory data (Dynamic updates have not yet been implemented, currently using manual feed inventory data)
-* Lab Reservation Service should be running.
 
-## Running the Client for Ondatra
+## Setup Netbox Docker.
+* Clone the Netbox repository.
+    ```git clone -b release https://github.com/netbox-community/netbox-docker.git```
+* Move to netbox-docker directory.
+* Create a new file that defines the port under which NetBox will be available. The file name must be docker-compose.override.yml and its content should be as follows:
+    ```
+    version: '3.4'
+    services:
+      netbox:
+        ports:
+        - 8000:8080
+    ```
+* Need to pull all the containers from the Docker registry and may take a while, depending on your internet connection.
+    ```docker compose pull```
+* Finally, start all the required Docker containers.
+    ```docker compose up```
+* To create the first admin user run this command:
+    ```docker compose exec netbox /opt/netbox/netbox/manage.py createsuperuser```
+* If you want to just stop NetBox to continue work later on, use the following command.
+    ```
+    # Stop all the containers
+    docker compose stop
+    
+    # Start the containers again
+    docker compose start
+    ```
+## Lab Reservation Service Setup
+* Run reservation service (server) using docker run.
+* Pull the latest version from the ghrc.
+    ```docker pull ghcr.io/open-traffic-generator/lab-reservation-service:0.0.2​```
+* Use the below command to run the server and ensure the Netbox is available.
+    ```
+    docker run -d -p 8080:8080 --name laas -e VERSION=0.0.2 lab_reservation_service:0.0.2 -netbox-host "netbox-host/IP" -netbox-port "netbox-port" -netbox-user-token "netbox-token" -framework-name cafy (generic/cafy/ondatra)
+    ```
+* Execute the client-side app (the above ondatra/cafy) to obtain the testbed reservation once the server is up and running.
+
+## Follow the steps to run the Client for Ondatra
 * Require testbed input in JSON.
 * Import goopentestbed
 * Run the Go file, the file should have the below content.
@@ -101,7 +137,7 @@
         ]
     }
     ```
-## Running the Client for Cafy
+## Follow the steps to run the Client for Cafy
 * Pip install opentestbed
 * Import opentestbed package
 * Run the python file, the file should have the below content.
@@ -135,40 +171,6 @@
     testbed_output = api.reserve(testbed)
     print(testbed_output)
     ```
-## Lab Reservation Service Setup
-* Run reservation service (server) using docker run.
-* Pull the latest version from the ghrc.
-    ```docker pull ghcr.io/open-traffic-generator/lab-reservation-service:0.0.2​```
-* Use the below command to run the server and ensure the Netbox is available.
-    ```
-    docker run -d -p 8080:8080 --name laas -e VERSION=0.0.2 lab_reservation_service:0.0.2 -netbox-host "netbox-host/IP" -netbox-port "netbox-port" -netbox-user-token "netbox-token" -framework-name cafy (generic/cafy/ondatra)
-    ```
-* Execute the client-side app (the above ondatra/cafy) to obtain the testbed reservation once the server is up and running.
-## Setup Netbox Docker.
-* Clone the Netbox repository.
-    ```git clone -b release https://github.com/netbox-community/netbox-docker.git```
-* Move to netbox-docker directory.
-* Create a new file that defines the port under which NetBox will be available. The file name must be docker-compose.override.yml and its content should be as follows:
-    ```
-    version: '3.4'
-    services:
-      netbox:
-        ports:
-        - 8000:8080
-    ```
-* Need to pull all the containers from the Docker registry and may take a while, depending on your internet connection.
-    ```docker compose pull```
-* Finally, start all the required Docker containers.
-    ```docker compose up```
-* To create the first admin user run this command:
-    ```docker compose exec netbox /opt/netbox/netbox/manage.py createsuperuser```
-* If you want to just stop NetBox to continue work later on, use the following command.
-    ```
-    # Stop all the containers
-    docker compose stop
     
-    # Start the containers again
-    docker compose start
-    ```
 ## Workflow Diagram.
     ![image](https://github.com/keysightgems/Lab_service/assets/40664949/4296659d-d9d7-4bd9-b540-32ee5b45ddfc)
