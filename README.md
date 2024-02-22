@@ -6,7 +6,7 @@
 * Netbox to get the Inventory data (Dynamic updates have not yet been implemented, currently using manual feed inventory data)
 * Lab Reservation Service should be running.
 
-# Running the Client for Ondatra
+## Running the Client for Ondatra
 * Require testbed input in JSON.
 * Import goopentestbed
 * Run the Go file and the file data should have the below content.
@@ -101,7 +101,7 @@
         ]
     }
     ```
-# Running the Client for Cafy
+## Running the Client for Cafy
 * Pip install opentestbed
 * Import opentestbed package
 * Run the python file and the file has the below content.
@@ -135,7 +135,7 @@
     testbed_output = api.reserve(testbed)
     print(testbed_output)
     ```
-# Lab Reservation Service Setup
+## Lab Reservation Service Setup
 * Run reservation service (server) using docker run.
 * Pull the latest version from the ghrc.
     ```docker pull ghcr.io/open-traffic-generator/lab-reservation-service:0.0.2​```
@@ -144,7 +144,7 @@
     docker run -d -p 8080:8080 --name laas -e VERSION=0.0.2 lab_reservation_service:0.0.2 -netbox-host "netbox-host/IP" -netbox-port "netbox-port" -netbox-user-token "netbox-token" -framework-name cafy (generic/cafy/ondatra)
     ```
 * Execute the client-side app (the above ondatra/cafy) to obtain the testbed reservation once the server is up and running.
-# Setup Netbox Docker.
+## Setup Netbox Docker.
 * Clone the Netbox repository.
     ```git clone -b release https://github.com/netbox-community/netbox-docker.git```
 * Move to netbox-docker directory.
@@ -170,5 +170,5 @@
     # Start the containers again
     docker compose start
     ```
-# Workflow Diagram.
+## Workflow Diagram.
     ![image](https://github.com/keysightgems/Lab_service/assets/40664949/4296659d-d9d7-4bd9-b540-32ee5b45ddfc)
