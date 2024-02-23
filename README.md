@@ -32,6 +32,8 @@
     # Start the containers again
     docker compose start
     ```
+* Configure the basic devices on Netbox using the below link.
+     ```https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/open-traffic-generator/testbed/testbed_model/artifacts/openapi.yaml&nocors#tag/Testbed```
 ## Lab Reservation Service Setup
 * Run reservation service (server) using docker run.
 * Pull the latest version from the ghrc.
