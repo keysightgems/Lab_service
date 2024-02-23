@@ -6,7 +6,7 @@
     * import goopentestbed for Ondatra ```github.com/open-traffic-generator/opentestbed/goopentestbed```
     * import opentestbed For Cafy ```pip install opentestbed```
 
-## Setup Netbox Docker.
+## [Setup Netbox Docker.](https://github.com/keysightgems/Lab_service/edit/main/README1.md)
 ### The following steps are not required if already running Netbox Docker.
    * Clone the Netbox repository.
        ```git clone -b release https://github.com/netbox-community/netbox-docker.git```
